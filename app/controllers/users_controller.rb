@@ -1,6 +1,6 @@
 class UsersController <  Clearance::UsersController
   def new
-    @user = User.new 
+    @user = User.new
   end
 
   def show
@@ -9,11 +9,6 @@ class UsersController <  Clearance::UsersController
   end
 
   private
-
-   def new
-     @user = User.new
-     render template: "users/new"
-   end
 
    def user_params
      params.require(:user).permit(:username, :email, :password)
