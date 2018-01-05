@@ -1,9 +1,9 @@
-class Guest
+class Guest < ApplicationRecord
   def email
     " "
   end
 
   def liked(_)
-    false 
+    false
   end
 end
