@@ -11,12 +11,16 @@ class User < ApplicationRecord
     class_name: "FollowingRelationship",
     dependent: :destroy
   has_many :followed_users, through: :followed_user_relationships
-  
+
   has_many :follower_relationships,
     foreign_key: :followed_user_id,
     class_name: "FollowingRelationship",
     dependent: :destroy
   has_many :followers, through: :follower_relationships
+
+  def timeline_shouts
+    Shout.where(user_id: followed_user_ids + [id])
+  end
 
   def following?(user)
     followed_user_ids.include?(user.id)
