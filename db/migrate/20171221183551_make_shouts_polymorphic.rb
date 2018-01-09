@@ -2,6 +2,7 @@ class MakeShoutsPolymorphic < ActiveRecord::Migration[5.1]
   class Shout < ApplicationRecord
     belongs_to :content, polymorphic: true
   end
+  
   class TextShout < ApplicationRecord; end
   def change
     change_table(:shouts) do |t|
@@ -19,7 +20,7 @@ class MakeShoutsPolymorphic < ActiveRecord::Migration[5.1]
         end
         dir.down do
           shout.update(body: shout.content.body)
-          shout.content.destroy 
+          shout.content.destroy
         end
       end
     end
